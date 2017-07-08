@@ -30,3 +30,8 @@
 *.exe
 *.out
 *.app
+
+# Conan
+build/
+test_package/build/
+*.pyc
