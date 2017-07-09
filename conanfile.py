@@ -6,7 +6,8 @@ class HalarduinoConan(ConanFile):
     license = "Apache License, Version 2.0. https://www.apache.org/licenses/LICENSE-2.0"
     url = "https://github.com/Dr-QP/HALArduino"
     author = "Anton Matosov (anton.matosov@gmail.com)"
-    description = "HAL layer implementation for Arduino"
+    description = """HAL layer implementation for Arduino. To build use:\n
+conan test_package -s compiler=gcc -s compiler.version=4.9 -s compiler.libcxx=libstdc++11 -s os="Arduino" -s arch=avr --build=missing"""
 
     settings = {"os": ["Arduino"],
                 "compiler": {
