@@ -2,7 +2,6 @@
 // Created by Anton Matosov on 5/5/16.
 //
 
-#include <cstddef>
 #include <Arduino.h>
 #include "ArduinoProgramMemory.h"
 

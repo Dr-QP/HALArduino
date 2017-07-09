@@ -1,14 +1,17 @@
+cmake_minimum_required(VERSION 3.5)
+set(CMAKE_TOOLCHAIN_FILE ${CMAKE_SOURCE_DIR}/../cmake/ArduinoToolchain.cmake)
 project(PackageTest CXX)
-cmake_minimum_required(VERSION 2.8.12)
+
+if(NOT EXISTS ${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
+    message(WARNING "The file conanbuildinfo.cmake doesn't exist.\nRunning 'conan install' first...")
+    execute_process(COMMAND conan install "${CMAKE_CURRENT_SOURCE_DIR}" -s compiler=gcc -s compiler.version=4.9 -s compiler.libcxx=libstdc++11
+            WORKING_DIRECTORY ${CMAKE_BINARY_DIR})
+endif()
 
 include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
 conan_basic_setup()
 
-add_executable(example example.cpp)
-target_link_libraries(example ${CONAN_LIBS})
-
-# CTest is a testing tool that can be used to test your project.
-# enable_testing()
-# add_test(NAME example
-#          WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/bin
-#          COMMAND example)
+generate_arduino_firmware(${PROJECT_NAME}
+        SKETCH example.ino
+#        ARDLIBS StandardCplusplus
+        )

@@ -19,7 +19,7 @@ void ArduinoHardwareSerial::begin(const unsigned long baudRate, const uint8_t tr
     _arduinoSerial.begin(baudRate, transferConfig);
 }
 
-unsigned int ArduinoHardwareSerial::write(uint8_t byte)
+size_t ArduinoHardwareSerial::write(uint8_t byte)
 {
     return _arduinoSerial.write(byte);
 }
