@@ -1,6 +1,4 @@
-from conans import ConanFile, CMake, tools
-import os
-
+from conans import ConanFile, CMake
 
 class HalarduinoConan(ConanFile):
     name = "HALArduino"
@@ -8,15 +6,24 @@ class HalarduinoConan(ConanFile):
     license = "Apache License, Version 2.0. https://www.apache.org/licenses/LICENSE-2.0"
     url = "https://github.com/Dr-QP/HALArduino"
     author = "Anton Matosov (anton.matosov@gmail.com)"
-    description = "HAL layer implementation for Arduino"
-    settings = "build_type"
+    description = """HAL layer implementation for Arduino. To build use:\n
+conan test_package -s compiler=gcc -s compiler.version=4.9 -s compiler.libcxx=libstdc++11 -s os="Arduino" -s arch=avr --build=missing"""
+
+    settings = {"os": ["Arduino"],
+                "compiler": {
+                    "gcc": {
+                        "version": ["4.9"],
+                        "libcxx": ["libstdc++11"]
+                    }
+                },
+                "arch": ["avr"]}
     generators = "cmake"
     exports_sources = "*", "!build/*", "!test_package/*"
     requires = "HAL/develop@anton-matosov/dev"
 
     def build(self):
         cmake = CMake(self)
-        self.run('cmake . %s' % (cmake.command_line))
+        self.run('cmake %s %s' % (self.conanfile_directory, cmake.command_line))
         self.run("cmake --build . %s" % cmake.build_config)
 
     def package(self):

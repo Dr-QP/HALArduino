@@ -7,7 +7,14 @@ username = os.getenv("CONAN_USERNAME", "anton-matosov")
 
 
 class HalarduinoTestConan(ConanFile):
-    settings = "os", "compiler", "build_type", "arch"
+    settings = {"os": ["Arduino"],
+                "compiler": {
+                    "gcc": {
+                        "version": ["4.9"],
+                        "libcxx": ["libstdc++11"]
+                    }
+                },
+                "arch": ["avr"]}
     requires = "HALArduino/develop@%s/%s" % (username, channel)
     generators = "cmake"
 
@@ -23,4 +30,5 @@ class HalarduinoTestConan(ConanFile):
 
     def test(self):
         os.chdir("bin")
-        self.run(".%sexample" % os.sep)
+        # Tests need to be uploaded to Arduino to run. So do nothing for now
+        # self.run(".%sexample" % os.sep)
