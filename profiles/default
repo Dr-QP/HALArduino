@@ -1,7 +1,0 @@
-[settings]
-arch=avr
-build_type=Release
-compiler=gcc
-compiler.libcxx=libc++11
-compiler.version=4.9
-os=Arduino
