@@ -7,7 +7,15 @@ class HalarduinoConan(ConanFile):
     url = "https://github.com/Dr-QP/HALArduino"
     author = "Anton Matosov (anton.matosov@gmail.com)"
     description = "HAL layer implementation for Arduino"
-    settings = "os", "compiler", "build_type", "arch"
+
+    settings = {"os": ["Arduino"],
+                "compiler": {
+                    "gcc": {
+                        "version": ["4.9"],
+                        "libcxx": ["libstdc++11"]
+                    }
+                },
+                "arch": ["avr"]}
     generators = "cmake"
     exports_sources = "*", "!build/*", "!test_package/*"
     requires = "HAL/develop@anton-matosov/dev"
