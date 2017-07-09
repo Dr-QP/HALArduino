@@ -940,7 +940,7 @@ function(find_arduino_libraries VAR_NAME SRCS ARDLIBS)
         if(NOT ${_srcfile_generated} OR ${_sketch_generated})
             if(NOT (EXISTS ${SRC} OR
                     EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/${SRC} OR
-                    EXISTS ${CMAKE_ARCHIVE_OUTPUT_DIRECTORY}/${SRC}))
+                    EXISTS ${CMAKE_CURRENT_BINARY_DIR}/${SRC}))
                 message(FATAL_ERROR "Invalid source file: ${SRC}")
             endif()
             file(STRINGS ${SRC} SRC_CONTENTS)
