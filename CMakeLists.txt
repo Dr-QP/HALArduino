@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
-set(CMAKE_TOOLCHAIN_FILE ${CMAKE_SOURCE_DIR}/cmake/ArduinoToolchain.cmake)
+set(CMAKE_TOOLCHAIN_FILE $ENV{CONAN_CMAKE_TOOLCHAIN_FILE})
 set(PROJECT_NAME HALArduino)
 project(${PROJECT_NAME} VERSION 1.0.0)
 

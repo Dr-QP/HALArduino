@@ -36,3 +36,4 @@ build/
 test_package/build/
 *.pyc
 .idea
+build-test
