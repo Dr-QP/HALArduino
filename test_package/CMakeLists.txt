@@ -1,5 +1,4 @@
 cmake_minimum_required(VERSION 3.5)
-set(CMAKE_TOOLCHAIN_FILE $ENV{CONAN_CMAKE_TOOLCHAIN_FILE})
 project(PackageTest CXX)
 
 if(NOT EXISTS ${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
