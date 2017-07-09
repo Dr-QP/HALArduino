@@ -23,4 +23,5 @@ class HalarduinoTestConan(ConanFile):
 
     def test(self):
         os.chdir("bin")
-        self.run(".%sexample" % os.sep)
+        # Tests need to be uploaded to Arduino to run. So do nothing for now
+        # self.run(".%sexample" % os.sep)
