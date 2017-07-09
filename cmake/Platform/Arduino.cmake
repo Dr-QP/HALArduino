@@ -940,7 +940,7 @@ function(find_arduino_libraries VAR_NAME SRCS ARDLIBS)
         if(NOT ${_srcfile_generated} OR ${_sketch_generated})
             if(NOT (EXISTS ${SRC} OR
                     EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/${SRC} OR
-                    EXISTS ${CMAKE_CURRENT_BINARY_DIR}/${SRC}))
+                    EXISTS ${CMAKE_ARCHIVE_OUTPUT_DIRECTORY}/${SRC}))
                 message(FATAL_ERROR "Invalid source file: ${SRC}")
             endif()
             file(STRINGS ${SRC} SRC_CONTENTS)
@@ -1139,7 +1139,7 @@ function(setup_arduino_target TARGET_NAME BOARD_ID ALL_SRCS ALL_LIBS COMPILE_FLA
     target_link_libraries(${TARGET_NAME} ${ALL_LIBS} "-lc -lm")
 
     if(NOT EXECUTABLE_OUTPUT_PATH)
-      set(EXECUTABLE_OUTPUT_PATH ${CMAKE_CURRENT_BINARY_DIR})
+      set(EXECUTABLE_OUTPUT_PATH ${CMAKE_RUNTIME_OUTPUT_DIRECTORY})
     endif()
     set(TARGET_PATH ${EXECUTABLE_OUTPUT_PATH}/${TARGET_NAME})
 
@@ -1235,7 +1235,7 @@ function(setup_arduino_bootloader_upload TARGET_NAME BOARD_ID PORT AVRDUDE_FLAGS
     endif()
 
     if(NOT EXECUTABLE_OUTPUT_PATH)
-      set(EXECUTABLE_OUTPUT_PATH ${CMAKE_CURRENT_BINARY_DIR})
+      set(EXECUTABLE_OUTPUT_PATH ${CMAKE_RUNTIME_OUTPUT_DIRECTORY})
     endif()
     set(TARGET_PATH ${EXECUTABLE_OUTPUT_PATH}/${TARGET_NAME})
 
@@ -1283,7 +1283,7 @@ function(setup_arduino_programmer_burn TARGET_NAME BOARD_ID PROGRAMMER PORT AVRD
     endif()
 
     if(NOT EXECUTABLE_OUTPUT_PATH)
-      set(EXECUTABLE_OUTPUT_PATH ${CMAKE_CURRENT_BINARY_DIR})
+      set(EXECUTABLE_OUTPUT_PATH ${CMAKE_RUNTIME_OUTPUT_DIRECTORY})
     endif()
     set(TARGET_PATH ${EXECUTABLE_OUTPUT_PATH}/${TARGET_NAME})
 
