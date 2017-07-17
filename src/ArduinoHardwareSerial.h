@@ -4,7 +4,6 @@
 
 #pragma once
 
-#include <Arduino.h>
 #include <HAL.h>
 
 class HardwareSerial;

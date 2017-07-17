@@ -9,14 +9,7 @@ class HalarduinoConan(ConanFile):
     description = """HAL layer implementation for Arduino. To build use:\n
 conan test_package -s compiler=gcc -s compiler.version=4.9 -s compiler.libcxx=libstdc++11 -s os="Arduino" -s arch=avr --build=missing"""
 
-    settings = {"os": ["Arduino"],
-                "compiler": {
-                    "gcc": {
-                        "version": ["4.9"],
-                        "libcxx": ["libstdc++11"]
-                    }
-                },
-                "arch": ["avr"]}
+    settings = "os", "compiler", "arch", "build_type"
     generators = "cmake"
     exports_sources = "*", "!build/*", "!test_package/*"
     requires = "HAL/develop@anton-matosov/dev"

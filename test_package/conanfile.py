@@ -7,14 +7,7 @@ username = os.getenv("CONAN_USERNAME", "anton-matosov")
 
 
 class HalarduinoTestConan(ConanFile):
-    settings = {"os": ["Arduino"],
-                "compiler": {
-                    "gcc": {
-                        "version": ["4.9"],
-                        "libcxx": ["libstdc++11"]
-                    }
-                },
-                "arch": ["avr"]}
+    settings = "os", "compiler", "arch", "build_type"
     requires = "HALArduino/develop@%s/%s" % (username, channel)
     generators = "cmake"
 
