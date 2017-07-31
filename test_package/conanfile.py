@@ -1,14 +1,8 @@
 from conans import ConanFile, CMake
 import os
 
-
-channel = os.getenv("CONAN_CHANNEL", "dev")
-username = os.getenv("CONAN_USERNAME", "anton-matosov")
-
-
 class HalarduinoTestConan(ConanFile):
     settings = "os", "compiler", "arch", "build_type"
-    requires = "HALArduino/develop@%s/%s" % (username, channel)
     generators = "cmake"
 
     def build(self):
