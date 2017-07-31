@@ -13,6 +13,7 @@ conan test_package -s compiler=gcc -s compiler.version=4.9 -s compiler.libcxx=li
     generators = "cmake"
     exports_sources = "*", "!build/*", "!test_package/*"
     requires = "HAL/develop@anton-matosov/dev"
+    build_requires = "arduino-toolchain/1.8.3@conan/testing"
 
     def build(self):
         cmake = CMake(self)
